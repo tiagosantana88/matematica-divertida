@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Jogo educativo de matemática para crianças praticarem soma, subtração, multiplicação e divisão.">
+  <title>Matemática Divertida</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-shape shape-one"></div>
+  <div class="background-shape shape-two"></div>
+
+  <main class="app" aria-live="polite">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Aprender brincando</p>
+        <h1>Matemática Divertida</h1>
+        <p class="subtitle">Resolva continhas, ganhe estrelas e avance de nível.</p>
+      </div>
+
+      <div class="score-card" aria-label="Pontuação">
+        <span>⭐ Estrelas</span>
+        <strong id="score">0</strong>
+      </div>
+    </header>
+
+    <section class="panel controls-panel" aria-label="Configurações do jogo">
+      <div class="control-group">
+        <span class="control-label">Escolha a conta</span>
+        <div class="operation-buttons" role="group" aria-label="Operação matemática">
+          <button class="operation active" data-operation="+" aria-pressed="true">➕ Soma</button>
+          <button class="operation" data-operation="-" aria-pressed="false">➖ Subtração</button>
+          <button class="operation" data-operation="*" aria-pressed="false">✖ Multiplicação</button>
+          <button class="operation" data-operation="/" aria-pressed="false">➗ Divisão</button>
+          <button class="operation" data-operation="mix" aria-pressed="false">🎲 Misturado</button>
+        </div>
+      </div>
+
+      <div class="control-group level-area">
+        <label for="level">Nível</label>
+        <select id="level">
+          <option value="1">🌱 Fácil</option>
+          <option value="2">🚀 Médio</option>
+          <option value="3">🏆 Desafio</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="panel game-card">
+      <div class="progress-row">
+        <span id="questionCounter">Questão 1 de 10</span>
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+      </div>
+
+      <div class="mascot" aria-hidden="true">
+        <div class="mascot-face">😊</div>
+        <div class="speech" id="speech">Você consegue!</div>
+      </div>
+
+      <div class="question" id="question" aria-label="Conta atual">
+        <span id="number1">2</span>
+        <span id="operator">+</span>
+        <span id="number2">3</span>
+        <span>=</span>
+        <span class="answer-box">?</span>
+      </div>
+
+      <form id="answerForm" class="answer-form" autocomplete="off">
+        <label for="answer">Sua resposta</label>
+        <div class="answer-row">
+          <input
+            id="answer"
+            type="number"
+            inputmode="numeric"
+            placeholder="Digite aqui"
+            aria-describedby="feedback"
+            required
+          >
+          <button type="submit" class="primary-button">Responder</button>
+        </div>
+      </form>
+
+      <div class="feedback" id="feedback" role="status"></div>
+
+      <div class="helper-actions">
+        <button type="button" class="secondary-button" id="hintButton">💡 Dica</button>
+        <button type="button" class="secondary-button" id="newGameButton">🔄 Novo jogo</button>
+      </div>
+    </section>
+
+    <section class="panel achievements">
+      <div>
+        <span class="mini-title">Acertos</span>
+        <strong id="correctCount">0</strong>
+      </div>
+      <div>
+        <span class="mini-title">Sequência</span>
+        <strong id="streak">0 🔥</strong>
+      </div>
+      <div>
+        <span class="mini-title">Melhor sequência</span>
+        <strong id="bestStreak">0</strong>
+      </div>
+    </section>
+
+    <section class="teacher-note">
+      <strong>Para o professor:</strong>
+      use “Fácil” para números menores, “Médio” para contas maiores e “Desafio” para ampliar a prática.
+    </section>
+  </main>
+
+  <div class="celebration" id="celebration" aria-hidden="true"></div>
+
+  <div class="modal-overlay hidden" id="finishModal" role="dialog" aria-modal="true" aria-labelledby="finishTitle">
+    <div class="modal-card">
+      <div class="modal-icon">🏆</div>
+      <h2 id="finishTitle">Rodada concluída!</h2>
+      <p id="finishText"></p>
+      <button type="button" class="primary-button" id="playAgainButton">Jogar novamente</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
